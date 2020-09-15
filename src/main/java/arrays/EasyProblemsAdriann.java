@@ -147,13 +147,4 @@ public class EasyProblemsAdriann {
         while(i.hasNext())
             System.out.print(i.next() + " "); //prints prime numbers in ArrayList
     }
-
-    public boolean isPrime2(int n){
-        for (int i = 2; i < n; i++) {
-            if(n%i == 0)
-                return false;
-        }
-        return true;
-    }
-
 }
