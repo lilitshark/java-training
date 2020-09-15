@@ -89,32 +89,17 @@ public class EasyProblemsAdriann {
     //7. Write a program that prints a multiplication table for numbers up to 12.
     public static void printMultiplicationTable(int tableSize){
 
-        System.out.print("    "); //prints space for vertical number allocation space
+        System.out.print("      "); //prints space for vertical number allocation space
         for (int i = 1; i <= tableSize; i++) {
-            if(i < 10)
-                System.out.print("  " + i + " | "); //prints horizontal axis of the table
-            else
-                System.out.print(" " + i + " | "); //prints horizontal axis of the table
+            System.out.format("%3d | ", i);
         }
         System.out.println(); //prints new line after table horizontal header
 
         for (int i = 1; i <= tableSize; i++) {
-            if(i < 10)
-                System.out.print(" " + i + " |"); // prints the vertical axis of the table, adds space before number when single digit
-            else if (i>=10 && i<=99)
-                System.out.print(i + " |"); // prints the vertical axis of the table, no space before number when double digit
+            System.out.format("%3d | ", i); // prints the vertical axis of the table
 
             for (int j = 1; j <= tableSize; j++) {
-                int count = i*j;
-                if(count < 10){
-                    System.out.print("  " + count + " | "); // prints product of numbers, when single digit adds space
-                }
-                else if(count >= 10 && count <= 99){
-                    System.out.print(" " + count + " | "); // prints product of numbers, when double digit no space afterwards
-                }
-                else if(count >=100 && count <= 999){
-                    System.out.print("" + count + " | "); // prints product of numbers, when triple digit no space afterwards
-                }
+                System.out.format("%3d | ", i*j); // prints product of numbers
             }
             System.out.println(); //prints new line for each line starting from 2nd
         }
