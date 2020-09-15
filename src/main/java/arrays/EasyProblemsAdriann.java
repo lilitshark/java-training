@@ -1,5 +1,8 @@
 package arrays;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 /* In this class I will be practicing Elementary programming problems from following url:
@@ -11,18 +14,20 @@ public class EasyProblemsAdriann {
         Scanner scanner = new Scanner(System.in);
 
         int number = askUserForNumber(scanner);
-        printSum(number);
-        printSumOfMultiplies(number);
+        printSum(number); //Ex #4
+        printSumOfMultiplies(number);  //Ex #5
 
         int answer = askUserForComputingOperation(scanner);
-        if(answer == 0){
+        if(answer == 0){  //Ex #6
             printSum(number);
         }
         else
             printProduct(number);
 
         int tableSize = askUserForNumber(scanner);
-        printMultiplicationTable(tableSize);
+        printMultiplicationTable(tableSize);  //Ex #7
+
+        printPrimeNumbers(100);  //Ex #8
 
         scanner.close();
     }
@@ -104,4 +109,51 @@ public class EasyProblemsAdriann {
             System.out.println(); //prints new line for each line starting from 2nd
         }
     }
+
+    //8. Write a program that prints all prime numbers. (Note: if your programming language does not support
+    // arbitrary size numbers, printing all primes up to the largest number you can easily represent is fine too.)
+
+    /**
+     * Checks if given number is prime
+     * @param number given number
+     * @return true if Prime, false if not
+     */
+    public static boolean isPrime(int number){
+        if(number <= 1) //validate corner case
+            return false;
+
+        for (int i = 2; i < number; i++) {
+            if(number%i == 0)
+                return false;
+        }
+        return true; //if the program gets here, than the number is Prime.
+    }
+
+    /**
+     * Prints prime numbers
+     * @param limit up to given limit, not included
+     */
+    public static void printPrimeNumbers(int limit){
+        List primeNumbers = new ArrayList<>();
+
+        for (int i = 2; i < limit; i++) {
+            if(isPrime(i)) {
+                primeNumbers.add(i); //adds to ArrayList collection
+                //System.out.print(i + " "); //prints prime numbers
+            }
+        }
+
+        Iterator i = primeNumbers.iterator();
+        while(i.hasNext())
+            System.out.print(i.next() + " "); //prints prime numbers in ArrayList
+    }
+
+    public boolean isPrime2(int n){
+        for (int i = 2; i < n; i++) {
+            if(n%i == 0)
+                return false;
+        }
+        return true;
+    }
+
 }
