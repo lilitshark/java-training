@@ -145,6 +145,6 @@ public class EasyProblemsAdriann {
 
         Iterator i = primeNumbers.iterator();
         while(i.hasNext())
-            System.out.print(i.next() + " "); //prints prime numbers in ArrayList
+            System.out.print(i.next() + " "); //prints prime numbers of the ArrayList
     }
 }
