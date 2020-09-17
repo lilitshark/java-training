@@ -13,7 +13,7 @@ public class EasyProblemsAdriann {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int number = askUserForNumber(scanner);
+        /*int number = askUserForNumber(scanner);
         printSum(number); //Ex #4
         printSumOfMultiplies(number);  //Ex #5
 
@@ -28,6 +28,19 @@ public class EasyProblemsAdriann {
         printMultiplicationTable(tableSize);  //Ex #7
 
         printPrimeNumbers(100);  //Ex #8
+         */
+
+
+        int secretNumber = 10;
+        boolean playAgain;
+        int userGuessNumber = askUserToGuessNumber(scanner);
+        
+        do{
+            checkSecretNumber(secretNumber, userGuessNumber);
+            playAgain = askIfPlayAgain(scanner);
+        } while(playAgain);
+        //printUserGuess();
+
 
         scanner.close();
     }
@@ -146,5 +159,46 @@ public class EasyProblemsAdriann {
         Iterator i = primeNumbers.iterator();
         while(i.hasNext())
             System.out.print(i.next() + " "); //prints prime numbers of the ArrayList
+    }
+
+    //9. Write a guessing game where the user has to guess a secret number. After every guess the program tells
+    // the user whether their number was too large or too small. At the end the number of tries needed should be printed.
+    // It counts only as one try if they input the same number multiple times consecutively.
+
+    //ask user to guess the number
+    //check the number
+    //print tries user made, unique numbers
+
+    static int askUserToGuessNumber(Scanner scanner){
+        System.out.println("Please enter a number");
+        return scanner.nextInt();
+    }
+
+    static void checkSecretNumber(int secretNumber, int userGuessNumber){
+        if(secretNumber == userGuessNumber){
+            System.out.println("You guessed the secret number!!");
+        }
+        else if(secretNumber > userGuessNumber)
+            System.out.println("Secret number is bigger than " + userGuessNumber);
+        else
+            System.out.println("Secret number is smaller than " + userGuessNumber);
+    }
+
+    static boolean askIfPlayAgain(Scanner scanner){
+        String answer;
+        boolean again;
+
+        do{
+            System.out.println("Do you want to play again? Yes / No");
+            answer = scanner.nextLine();
+            if(answer.equalsIgnoreCase("yes")) {
+                again = true;
+                break;
+            }
+            else
+                again = false;
+        }while (!answer.equalsIgnoreCase("yes") && !answer.equalsIgnoreCase("no"));
+
+        return again;
     }
 }
