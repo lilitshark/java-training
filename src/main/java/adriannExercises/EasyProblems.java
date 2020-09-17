@@ -43,6 +43,9 @@ public class EasyProblems {
 
         System.out.println("User entered " + userGuess.size() + " unique numbers");
 
+        //Problem #10
+        printNextLeapYears(3);
+
         scanner.close();
     }
 
@@ -214,4 +217,44 @@ public class EasyProblems {
 
         return again;
     }*/
+
+    //10. Write a program that prints the next 20 leap years.
+
+    /**
+     * This method will check if the year is leap or not
+     * @param year given the year to be checked
+     * @return true if the year is leap, false if not
+     */
+    public static boolean isLeapYear(int year){
+        if(year%4 == 0 && year%100 != 0 || year%400 == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * This method prints next N leap years
+     * @param leapYearCount given next leap years to print
+     */
+    public static void printNextLeapYears(int leapYearCount){
+        int startYear = 2017;
+        int count = 0;
+
+        while(count < leapYearCount){
+            if(isLeapYear(startYear)) {
+                System.out.print(startYear + " ");
+                count++;
+                System.out.println(count);
+            }
+            startYear++;
+        }
+
+     /* second solution
+        for (int i = startYear; i < startYear + leapYearCount*4; i++) {
+            if(isLeapYear(i)){
+                System.out.print(i + " ");
+            }
+            else continue;
+        }*/
+    }
 }
