@@ -1,46 +1,47 @@
-package arrays;
+package adriannExercises;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /* In this class I will be practicing Elementary programming problems from following url:
 https://adriann.github.io/programming_problems.html
 * */
-public class EasyProblemsAdriann {
+public class EasyProblems {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
 
-        /*int number = askUserForNumber(scanner);
-        printSum(number); //Ex #4
-        printSumOfMultiplies(number);  //Ex #5
+        int number = askUserForNumber(scanner);
+        printSum(number); //Problem #4
+        printSumOfMultiplies(number);  //Problem #5
 
         int answer = askUserForComputingOperation(scanner);
-        if(answer == 0){  //Ex #6
+        if(answer == 0){  //Problem #6
             printSum(number);
         }
         else
             printProduct(number);
 
         int tableSize = askUserForNumber(scanner);
-        printMultiplicationTable(tableSize);  //Ex #7
+        printMultiplicationTable(tableSize);  //Problem #7
 
-        printPrimeNumbers(100);  //Ex #8
-         */
+        printPrimeNumbers(100);  //Problem #8
 
 
-        int secretNumber = 10;
-        boolean playAgain;
-        int userGuessNumber = askUserToGuessNumber(scanner);
-        
+        // Problem #9
+        int upperBound = 25;
+        int secretNumber = random.nextInt(upperBound);
+        int userGuessNumber;
+
+        Set userGuess = new HashSet();
+
         do{
+            userGuessNumber = askUserToGuessNumber(scanner);
+            userGuess.add(userGuessNumber);
             checkSecretNumber(secretNumber, userGuessNumber);
-            playAgain = askIfPlayAgain(scanner);
-        } while(playAgain);
-        //printUserGuess();
+        } while (secretNumber!=userGuessNumber);
 
+        System.out.println("User entered " + userGuess.size() + " unique numbers");
 
         scanner.close();
     }
@@ -165,10 +166,6 @@ public class EasyProblemsAdriann {
     // the user whether their number was too large or too small. At the end the number of tries needed should be printed.
     // It counts only as one try if they input the same number multiple times consecutively.
 
-    //ask user to guess the number
-    //check the number
-    //print tries user made, unique numbers
-
     static int askUserToGuessNumber(Scanner scanner){
         System.out.println("Please enter a number");
         return scanner.nextInt();
@@ -178,15 +175,31 @@ public class EasyProblemsAdriann {
         if(secretNumber == userGuessNumber){
             System.out.println("You guessed the secret number!!");
         }
-        else if(secretNumber > userGuessNumber)
-            System.out.println("Secret number is bigger than " + userGuessNumber);
+        if(secretNumber > userGuessNumber)
+            System.out.println("Secret number is greater than " + userGuessNumber);
         else
-            System.out.println("Secret number is smaller than " + userGuessNumber);
+            System.out.println("Secret number is less than " + userGuessNumber);
+    }
+
+    static void printUserGuess(LinkedList userGuess){
+        System.out.print("User guesses are: ");
+        userGuess.forEach((n -> System.out.print(n + " ")));
+    }
+
+    /*
+    //This part of the code asks the user if they want to play again and quits the game if not, this might be used later
+    static boolean playAgain(Scanner scanner){
+        boolean again;
+
+        System.out.println("Do you want to play again? True / False");
+        again = scanner.nextBoolean();
+
+        return again;
     }
 
     static boolean askIfPlayAgain(Scanner scanner){
-        String answer;
-        boolean again;
+        String answer = "";
+        boolean again = false;
 
         do{
             System.out.println("Do you want to play again? Yes / No");
@@ -200,5 +213,5 @@ public class EasyProblemsAdriann {
         }while (!answer.equalsIgnoreCase("yes") && !answer.equalsIgnoreCase("no"));
 
         return again;
-    }
+    }*/
 }
