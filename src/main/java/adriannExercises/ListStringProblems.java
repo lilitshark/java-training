@@ -6,7 +6,7 @@ public class ListStringProblems {
     public static void main(String[] args) {
 
         List<Integer> list = new ArrayList();
-        list.addAll(Arrays.asList(87, 1, 111, 0, 5, 10, -5));
+        list.addAll(Arrays.asList(87, 1, 111, 0, 5, 10, -5, 12));
 
         //findMinNoSorting(list);
         //findMaxNoSorting(list);
@@ -18,6 +18,10 @@ public class ListStringProblems {
         System.out.println(isElementPresent(list, 11));
         System.out.println(binarySearch(list, 5));
         System.out.println(isPresentWithListContains(list, 0));
+
+        System.out.println(oddIndexElements(list));
+        System.out.println(calculateRunningTotal(list));
+
     }
 
     //1. Write a function that returns the largest element in a list.
@@ -170,5 +174,39 @@ public class ListStringProblems {
      */
     public static boolean isPresentWithListContains(List<Integer> list, int elementToCheck){
         return list.contains(elementToCheck);
+    }
+
+    //4. Write a function that returns the elements on odd positions in a list.
+    /**
+     * Returns elements on odd position as a new list
+     * @param list to look for elements on odd index
+     * @return a new list with elements on odd indexes of the list
+     */
+    public static List oddIndexElements(List<Integer> list) {
+        List<Integer> oddIndexElements = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if(i%2 != 0)
+                oddIndexElements.add(list.get(i));
+        }
+        return oddIndexElements;
+    }
+
+    //5. Write a function that computes the running total of a list
+    /**
+     * Calculates, prints and returns the running total of the given list
+     * @param list given list to calculate running total
+     * @return running total as a new list
+     */
+    static List calculateRunningTotal(List<Integer> list){
+        List<Integer> runningTotal = new ArrayList<>();
+        int total = 0;
+
+        for (int i = 0; i < list.size(); i++) {
+            total += list.get(i);
+            runningTotal.add(total);
+            System.out.println("Running total is: " + total);
+        }
+
+        return runningTotal;
     }
 }
