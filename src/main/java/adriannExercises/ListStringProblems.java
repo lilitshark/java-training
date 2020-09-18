@@ -6,12 +6,14 @@ public class ListStringProblems {
     public static void main(String[] args) {
 
         List<Integer> list = new ArrayList();
-        list.addAll(Arrays.asList(87, 1, 111, 5, 10, -5));
+        list.addAll(Arrays.asList(87, 1, 111, 0, 5, 10, -5));
 
         //findMinNoSorting(list);
         //findMaxNoSorting(list);
         System.out.println("Minimum element is: " + findMin(list));
         System.out.println("Maximum element is: " + findMax(list));
+
+        reverseList(list);
     }
 
     //1. Write a function that returns the largest element in a list.
@@ -94,5 +96,22 @@ public class ListStringProblems {
      */
     public static boolean isEmpty(Collection collection){
         return (collection == null || collection.size() == 0);
+    }
+
+    //2. Write function that reverses a list, preferably in place.
+    /**
+     * Reverses values of the list in the same list
+     * @param list given list to reverse values
+     */
+    public static void reverseList(List<Integer> list){
+        int tmpValue;
+        int size = list.size();
+
+        for (int i = 0; i < size/2; i++) {
+            tmpValue = list.get(i);
+            list.set(i, list.get((size-1) -i));
+            list.set(size-1-i, tmpValue);
+        }
+        System.out.println(list);
     }
 }
