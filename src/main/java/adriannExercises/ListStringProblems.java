@@ -14,6 +14,10 @@ public class ListStringProblems {
         System.out.println("Maximum element is: " + findMax(list));
 
         reverseList(list);
+
+        System.out.println(isElementPresent(list, 11));
+        System.out.println(binarySearch(list, 5));
+        System.out.println(isPresentWithListContains(list, 0));
     }
 
     //1. Write a function that returns the largest element in a list.
@@ -113,5 +117,58 @@ public class ListStringProblems {
             list.set(size-1-i, tmpValue);
         }
         System.out.println(list);
+    }
+    //3. Write a function that checks whether an element occurs in a list.
+
+    /**
+     * Checks if given list is not empty and then checks if the element is present using linear search
+     * Time complexity = O(n)
+     * @param list list to look for the element
+     * @param elementToCheck element to check if exists in the list
+     * @return true if the element exists, false if not present or the given list is empty or null
+     */
+    public static boolean isElementPresent(List<Integer> list, int elementToCheck){
+        boolean isPresent = false;
+
+        if(isEmpty(list))
+            isPresent = false;
+
+        for (Integer number:list) {
+            if(number == elementToCheck) {
+                isPresent = true;
+                break;
+            }
+        }
+        //System.out.println("Is " + elementToCheck + " present in the list: " + isPresent);
+        return isPresent;
+    }
+
+    /**
+     * Checks if the given element is present in the given list using binary search
+     * Time complexity = O(lob2N)
+     * @param list list to look for the element
+     * @param elementToCheck element to check if exists in the list
+     * @return true if the element exists, false if not
+     */
+    public static boolean binarySearch(List<Integer> list, int elementToCheck){
+        List<Integer> sortedList = new ArrayList<>(list);
+        Collections.sort(sortedList);
+
+        int index = Collections.binarySearch(sortedList, elementToCheck); //if index=-1 the element doesn't exist in the list
+
+        if(index >= 0)
+            return true;
+        else
+            return false;
+    }
+
+    /**
+     * Checks if the given element is present in the given list using contains() method of a list
+     * @param list list to look for the element
+     * @param elementToCheck element to check if exists in the list
+     * @return true if the element exists, false if not
+     */
+    public static boolean isPresentWithListContains(List<Integer> list, int elementToCheck){
+        return list.contains(elementToCheck);
     }
 }
