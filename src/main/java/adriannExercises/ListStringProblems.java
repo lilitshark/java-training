@@ -8,6 +8,9 @@ public class ListStringProblems {
         List<Integer> list = new ArrayList();
         list.addAll(Arrays.asList(87, 1, 111, 0, 5, 10, -5, 12));
 
+        List<Integer> list2 = new ArrayList();
+        list2.addAll(Arrays.asList(0, 1, 2, 4, 5, 6, 7, 9, 12, 16, 20, 25, 32, 36));
+
         //Problem #1, 1b
         //findMinNoSorting(list);
         //findMaxNoSorting(list);
@@ -39,6 +42,12 @@ public class ListStringProblems {
         System.out.println("The sum of the list elements is " + calculateSumForLoop(list));
         System.out.println("The sum of the list elements is " + calculateSumWhileLoop(list));
         System.out.println("The sum of the list elements is " + calculateSumRecursion(list));
+
+        //Problem #8
+        printPerfectSquaresApplyingMethodOnElements();
+        System.out.println();
+        System.out.print("Perfect square numbers in the list are: ");
+        printPerfectSquare(list2);
 
         scanner.close();
     }
@@ -293,5 +302,54 @@ public class ListStringProblems {
                 return list.get(0) + calculateSumRecursion(list.subList(1, size));
                 //another option to divide the list in 2 and call calculateSumRecursion for each part of list
         }
+    }
+
+    //8. Write a function on_all that applies a function to every element of a list. Use it to print the first
+    // twenty perfect squares. The perfect squares can be found by multiplying each natural number with itself.
+    // The first few perfect squares are 1*1= 1, 2*2=4, 3*3=9, 4*4=16. Twelve for example is not a perfect square
+    // because there is no natural number m so that m*m=12.
+    /**
+     * Prints first perfect square numbers maxCountToPrint times.
+     * Applies calculateSquare() method on every item of the list
+     */
+    public static void printPerfectSquaresApplyingMethodOnElements(){
+        int maxCountToPrint = 20;
+        System.out.print("Printing first " + maxCountToPrint + " perfect square numbers: ");
+
+        for (int i = 1; i <= maxCountToPrint; i++) {
+            System.out.print(calculateSquare(i) + " ");
+        }
+    }
+
+    /**
+     * Calculates square of a number
+     * @param number given number to calculate square
+     * @return square of the given number
+     */
+    static int calculateSquare(int number){
+        return number * number;
+    }
+
+    /**
+     * Prints perfect square numbers of the list
+     * @param list given list to check for perfect square number
+     */
+    static void printPerfectSquare(List<Integer> list){
+        for (Integer number:list) {
+            if(isPerfectSquare(number) && number > 0)
+                System.out.print(number + " ");
+        }
+    }
+
+    /**
+     * Checks if the given number is a perfect square number or not.
+     * Method checks if the square root of the given number is equal to the square of the result.
+     * This also means that the square root of the number is a whole number (integer).
+     * @param number given number to check
+     * @return true if number is perfect square number, false if not
+     */
+    public static boolean isPerfectSquare(int number){
+        int n = (int)Math.sqrt(number);
+        return n*n == number;
     }
 }
