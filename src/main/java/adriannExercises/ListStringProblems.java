@@ -4,24 +4,38 @@ import java.util.*;
 
 public class ListStringProblems {
     public static void main(String[] args) {
-
+        Scanner scanner = new Scanner(System.in);
         List<Integer> list = new ArrayList();
         list.addAll(Arrays.asList(87, 1, 111, 0, 5, 10, -5, 12));
 
+        //Problem #1, 1b
         //findMinNoSorting(list);
         //findMaxNoSorting(list);
         System.out.println("Minimum element is: " + findMin(list));
         System.out.println("Maximum element is: " + findMax(list));
 
+        //Problem #2
         reverseList(list);
 
+        //Problem #3
         System.out.println(isElementPresent(list, 11));
         System.out.println(binarySearch(list, 5));
         System.out.println(isPresentWithListContains(list, 0));
 
+        //Problem #4
         System.out.println(oddIndexElements(list));
+        //Problem #5
         System.out.println(calculateRunningTotal(list));
 
+        //Problem #6
+        System.out.println("Please enter a text to check if it's a palindrome: ");
+        String text = scanner.nextLine();
+        if(isPalindrome(text))
+            System.out.println("The text is a palindrome");
+        else
+            System.out.println("The text is not a palindrome");
+
+        scanner.close();
     }
 
     //1. Write a function that returns the largest element in a list.
@@ -208,5 +222,21 @@ public class ListStringProblems {
         }
 
         return runningTotal;
+    }
+
+    //6. Write a function that tests whether a string is a palindrome.
+    /**
+     * Checks if the string is a palindrome or not
+     * @param text given string to check
+     * @return true if the given string is a palindrome, false if not
+     */
+    public static boolean isPalindrome(String text){
+        int textLength = text.length();
+
+        for (int i = 0; i < textLength/2; i++) {
+            if(text.charAt(i) != text.charAt(textLength -1 - i))
+                return false;
+        }
+        return true;
     }
 }
