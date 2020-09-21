@@ -35,6 +35,11 @@ public class ListStringProblems {
         else
             System.out.println("The text is not a palindrome");
 
+        //Problem #7
+        System.out.println("The sum of the list elements is " + calculateSumForLoop(list));
+        System.out.println("The sum of the list elements is " + calculateSumWhileLoop(list));
+        System.out.println("The sum of the list elements is " + calculateSumRecursion(list));
+
         scanner.close();
     }
 
@@ -238,5 +243,55 @@ public class ListStringProblems {
                 return false;
         }
         return true;
+    }
+
+    //7. Write three functions that compute the sum of the numbers in a list: using a for-loop, a while-loop and recursion.
+
+    /**
+     * Calculates the sum of list elements using 'for' loop
+     * @param list given list to calculate sum
+     * @return sum of given list elements
+     */
+    public static int calculateSumForLoop(List<Integer> list){
+        int sum = 0;
+        for (Integer number:list) {
+            sum+=number;
+        }
+        return sum;
+    }
+
+    /**
+     * Calculates the sum of list elements using 'while' loop
+     * @param list given list to calculate sum
+     * @return sum of given list elements
+     */
+    public static int calculateSumWhileLoop(List<Integer> list){
+        int index = 0;
+        int sum = 0;
+
+        while(index < list.size()) {
+            sum = list.get(index) + sum;
+            index++;
+        }
+        return sum;
+    }
+
+    /**
+     * Calculates the sum of list elements using recursion
+     * @param list given list to calculate sum
+     * @return sum of given list elements
+     */
+    public static int calculateSumRecursion(List<Integer> list){
+        int size = list.size();
+
+        switch (size){
+            case 0:
+                return 0;
+            case 1:
+                return list.get(0);
+            default:
+                return list.get(0) + calculateSumRecursion(list.subList(1, size));
+                //another option to divide the list in 2 and call calculateSumRecursion for each part of list
+        }
     }
 }
