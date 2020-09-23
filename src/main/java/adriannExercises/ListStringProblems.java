@@ -1,12 +1,13 @@
 package adriannExercises;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class ListStringProblems {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        List<Integer> list = new ArrayList();
-        list.addAll(Arrays.asList(87, 1, 111, 0, 5, 10, -5, 12));
+        List<Integer> list1 = new ArrayList();
+        list1.addAll(Arrays.asList(87, 1, 111, 0, 5, 10, -5, 12));
 
         List<Integer> list2 = new ArrayList();
         list2.addAll(Arrays.asList(0, 1, 2, 4, 5, 6, 7, 9, 12, 16, 20, 25, 32, 36));
@@ -15,23 +16,23 @@ public class ListStringProblems {
         list3.addAll(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h"));
 
         //Problem #1, 1b
-        //findMinNoSorting(list);
-        //findMaxNoSorting(list);
-        System.out.println("Minimum element is: " + findMin(list));
-        System.out.println("Maximum element is: " + findMax(list));
+        //findMinNoSorting(list1);
+        //findMaxNoSorting(list1);
+        System.out.println("Minimum element is: " + findMin(list1));
+        System.out.println("Maximum element is: " + findMax(list1));
 
         //Problem #2
-        reverseList(list);
+        reverseList(list1);
 
         //Problem #3
-        System.out.println(isElementPresent(list, 11));
-        System.out.println(binarySearch(list, 5));
-        System.out.println(isPresentWithListContains(list, 0));
+        System.out.println(isElementPresent(list1, 11));
+        System.out.println(binarySearch(list1, 5));
+        System.out.println(isPresentWithListContains(list1, 0));
 
         //Problem #4
-        System.out.println(oddIndexElements(list));
+        System.out.println(oddIndexElements(list1));
         //Problem #5
-        System.out.println(calculateRunningTotal(list));
+        System.out.println(calculateRunningTotal(list1));
 
         //Problem #6
         System.out.println("Please enter a text to check if it's a palindrome: ");
@@ -42,21 +43,23 @@ public class ListStringProblems {
             System.out.println("The text is not a palindrome");
 
         //Problem #7
-        System.out.println("The sum of the list elements is " + calculateSumForLoop(list));
-        System.out.println("The sum of the list elements is " + calculateSumWhileLoop(list));
-        System.out.println("The sum of the list elements is " + calculateSumRecursion(list));
+        System.out.println("The sum of the list1 elements is " + calculateSumForLoop(list1));
+        System.out.println("The sum of the list1 elements is " + calculateSumWhileLoop(list1));
+        System.out.println("The sum of the list1 elements is " + calculateSumRecursion(list1));
 
         //Problem #8
         printPerfectSquaresApplyingMethodOnElements();
         System.out.println();
-        System.out.print("Perfect square numbers in the list are: ");
+        System.out.print("Perfect square numbers in the list1 are: ");
         printPerfectSquare(list2);
 
         //Problem #9
-        System.out.println(concatLists(list, list2));
+        System.out.println(concatLists(list1, list2));
 
         //Problem #10
         System.out.println(combineLists(list2, list3));
+        //Problem #11
+        System.out.println(mergeSortedLists(list1, list2));
 
         scanner.close();
     }
@@ -370,7 +373,7 @@ public class ListStringProblems {
      * @return a new list as concatenation of list1 and list2
      */
     static List concatLists(List list1, List list2){
-        List newList = new ArrayList(); //created new list not to modify existing list objects
+        List newList = new ArrayList();
         newList.addAll(list1);
         newList.addAll(list2);
         return newList;
@@ -410,6 +413,21 @@ public class ListStringProblems {
             }
             newList.addAll(length1*2, list2.subList(length1, length2));
         }
+        return newList;
+    }
+
+    //11. Write a function that merges two sorted lists into a new sorted list. [1,4,6],[2,3,5] → [1,2,3,4,5,6].
+    /**
+     * Merges given sorted lists (in this program I didn't use sortedList as parameters and used already existing lists)
+     * @param list1 - given already sorted list
+     * @param list2 - given already sorted list
+     * @return a new sorted list as merge of given list1 and list2
+     */
+    static List mergeSortedLists(List list1, List list2){
+        List newList = new ArrayList();
+        newList.addAll(list1);
+        newList.addAll(list2);
+        Collections.sort(newList);
         return newList;
     }
 }
