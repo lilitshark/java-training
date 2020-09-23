@@ -12,8 +12,8 @@ public class ListStringProblems {
         List<Integer> list2 = new ArrayList();
         list2.addAll(Arrays.asList(0, 1, 2, 4, 5, 6, 7, 9, 12, 16, 20, 25, 32, 36));
 
-        List<String> list3 = new ArrayList();
-        list3.addAll(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h"));
+        List<String> list3 = new ArrayList(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h"));
+        List<Integer> list4 = new ArrayList(Arrays.asList(1, 2, 3, 4, 5, 6));
 
         //Problem #1, 1b
         //findMinNoSorting(list1);
@@ -61,6 +61,7 @@ public class ListStringProblems {
         //Problem #11
         System.out.println(mergeSortedLists(list1, list2));
 
+        rotateElements(list4, 2);
         scanner.close();
     }
 
@@ -429,5 +430,22 @@ public class ListStringProblems {
         newList.addAll(list2);
         Collections.sort(newList);
         return newList;
+    }
+
+    //12. Write a function that rotates a list by k elements. For example [1,2,3,4,5,6] rotated by two becomes [3,4,5,6,1,2].
+    // Try solving this without creating a copy of the list. How many swap or move operations do you need?
+    /**
+     * Rotates list elements by given element move size. The elements are rotated in the same list and prints the list.
+     * @param list given list to rotate elements
+     * @param move given element move size, elements will be rotated based on move value
+     */
+    static void rotateElements(List<Integer> list, int move){
+        int tmp;
+        for (int i = 0; i < list.size() - move; i++) {
+            tmp = list.get(i);
+            list.set(i, list.get(i+move));
+            list.set(i+move, tmp);
+        }
+        System.out.println(list);
     }
 }
