@@ -11,6 +11,9 @@ public class ListStringProblems {
         List<Integer> list2 = new ArrayList();
         list2.addAll(Arrays.asList(0, 1, 2, 4, 5, 6, 7, 9, 12, 16, 20, 25, 32, 36));
 
+        List<String> list3 = new ArrayList();
+        list3.addAll(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h"));
+
         //Problem #1, 1b
         //findMinNoSorting(list);
         //findMaxNoSorting(list);
@@ -48,6 +51,12 @@ public class ListStringProblems {
         System.out.println();
         System.out.print("Perfect square numbers in the list are: ");
         printPerfectSquare(list2);
+
+        //Problem #9
+        System.out.println(concatLists(list, list2));
+
+        //Problem #10
+        System.out.println(combineLists(list2, list3));
 
         scanner.close();
     }
@@ -351,5 +360,56 @@ public class ListStringProblems {
     public static boolean isPerfectSquare(int number){
         int n = (int)Math.sqrt(number);
         return n*n == number;
+    }
+
+    //9. Write a function that concatenates two lists. [a,b,c], [1,2,3] → [a,b,c,1,2,3]
+    /**
+     * Program concatenates two lists
+     * @param list1 given list to concatenate
+     * @param list2 given list to concatenate
+     * @return a new list as concatenation of list1 and list2
+     */
+    static List concatLists(List list1, List list2){
+        List newList = new ArrayList(); //created new list not to modify existing list objects
+        newList.addAll(list1);
+        newList.addAll(list2);
+        return newList;
+    }
+
+    //10. Write a function that combines two lists by alternatingly taking elements, e.g. [a,b,c], [1,2,3] → [a,1,b,2,c,3].
+    /**
+     * Program combines two lists with sequential order, 1 element from each list. The program checks for 3 cases,
+     * if the given list sizes are equal, greater or less than the other and combines lists accordingly.
+     * @param list1 given list to combine
+     * @param list2 given list to combine
+     * @return new list as combination of list1 and list2
+     */
+    static List combineLists(List list1, List list2){
+        List newList = new ArrayList();
+        int length = list1.size() + list2.size();
+        int length1 = list1.size();
+        int length2 = list2.size();
+
+        if(length1 == length2) {
+            for (int i = 0; i < length/2; i++) {
+                newList.add(list1.get(i));
+                newList.add(list2.get(i));
+            }
+        }
+        else if(length1 > length2){
+            for (int i = 0; i < length2; i++) {
+                newList.add(list1.get(i));
+                newList.add(list2.get(i));
+            }
+            newList.addAll(length2*2, list1.subList(length2, length1));
+        }
+        else{
+            for (int i = 0; i < length1; i++) {
+                newList.add(list1.get(i));
+                newList.add(list2.get(i));
+            }
+            newList.addAll(length1*2, list2.subList(length1, length2));
+        }
+        return newList;
     }
 }
