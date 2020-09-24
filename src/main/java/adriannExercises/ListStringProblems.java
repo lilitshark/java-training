@@ -60,8 +60,15 @@ public class ListStringProblems {
         System.out.println(combineLists(list2, list3));
         //Problem #11
         System.out.println(mergeSortedLists(list1, list2));
-
+        //Problem #12
         rotateElements(list4, 2);
+        //Problem #13
+        findFibonacciNumbers(20);
+        //System.out.println(fibonacci(9));
+
+        //Problem #14
+        System.out.println(separateNumberDigits(1234));
+
         scanner.close();
     }
 
@@ -447,5 +454,58 @@ public class ListStringProblems {
             list.set(i+move, tmp);
         }
         System.out.println(list);
+    }
+
+    //13.Write a function that computes the list of the first 100 Fibonacci numbers. The first two Fibonacci numbers
+    // are 1 and 1. The n+1-st Fibonacci number can be computed by adding the n-th and the n-1-th Fibonacci number.
+    // The first few are therefore 1, 1, 1+1=2, 1+2=3, 2+3=5, 3+5=8.
+    /**
+     * Fibonacci numbers using recursion
+     * //TODO add elements in the list
+     * @param n given number fibonacci number to print
+     * @return the Fibonacci number in the sequence it's passed as parameter
+     */
+    static int fibonacci(int n){
+        if(n <= 1)
+            return n;
+        return fibonacci(n-1) + fibonacci(n-2);
+    }
+
+    /**
+     * Prints as many Fibonacci numbers as it's given as a parameter using dynamic programming.
+     * @param count count of the numbers to print
+     */
+    static void findFibonacciNumbers(int count){
+        List<Integer> numbers = new ArrayList<>();
+
+        numbers.add(1);
+        numbers.add(1);
+        while (numbers.size() < count)
+        {
+            int length = numbers.size()-1;
+            int sum = numbers.get(length) + numbers.get(length-1);
+            numbers.add(sum);
+        }
+        System.out.println(numbers);
+    }
+
+    //14. Write a function that takes a number and returns a list of its digits. So for 2342 it should return [2,3,4,2].
+    /**
+     * Separates digits of a number and keeps them in a stack as the division starts from the end of the number, the
+     * digits will be poped of the stack in the reverse order.
+     * @param number given number to separate digits
+     * @return stack of separated digits
+     */
+    static LinkedList<Integer> separateNumberDigits(int number){
+        LinkedList<Integer> stack = new LinkedList<Integer>();
+
+        while(number > 0){
+            int current = number%10;
+            if(current > 0){
+                stack.push(current);
+                number = number/10;
+            }
+        }
+        return stack;
     }
 }
